@@ -1,0 +1,32 @@
+
+<h1>Weather forecast</h1>
+Search city {{input value=inputValue}}
+
+<h2>Search results</h2>
+<table class="weather-forecast">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Yahoo</th>
+      <th>OWM (mock)</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each model.merged as |forecast|}}
+      <tr>
+        <td>{{moment-format forecast.date "YYYY-MM-DD"}}</td>
+        <td> 
+          {{#if forecast.yahoo}}
+            {{weather-info info=forecast.yahoo units="F"}}
+          {{/if}}
+        </td>
+        <td>
+          {{#if forecast.owm}}
+            {{weather-info info=forecast.owm units="K"}}
+          {{/if}}
+        </td>
+      </tr>
+    {{/each}}  
+  </tbody>
+  
+</table>
